@@ -1,0 +1,16 @@
+{
+  "name": "devfest-nantes-jigsaw-docs",
+  "version": "0.0.1",
+  "description": "Pratical Work docs for hands on jigsaw @ devefest nantes",
+  "scripts": {
+    "serve": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "main": "index.js",
+  "author": "Mathieu Mure <mathieu.mure@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "vuepress": "^0.14.4"
+  }
+}
