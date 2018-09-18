@@ -2,6 +2,7 @@ module.exports = {
 	title: 'Hand\'s on Jigsaw - Devfest',
 	description: 'Hand\'s on Jigsaw @ Devfest',
 	dest: 'docs',
+	base: '/devfest-nantes-jigsaw-docs/',
 	themeConfig: {
 		repo: 'Zenika/draft-hands-on-jigsaw-devfest',
 		nav: [
