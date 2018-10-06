@@ -4,7 +4,7 @@ module.exports = {
 	dest: 'docs',
 	base: '/devfest-nantes-jigsaw-docs/',
 	themeConfig: {
-		repo: 'Zenika/draft-hands-on-jigsaw-devfest',
+		repo: 'louiznk/hands-on-jigsaw-devfest',
 		nav: [
 			{ text: 'Tips', link: '/TIPS' },
 			{ text: 'Frontend', link: 'https://github.com/mathieumure/devfest-nantes-jigsaw-webapp' },
