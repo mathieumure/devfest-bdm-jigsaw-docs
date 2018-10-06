@@ -19,7 +19,7 @@ Aucun Wookiee, Ewok ou Porg n'a été maltraité durant ce hands-on.
 
 Les Jedi étant une espèce protégée, aucun ordre 66 n'a été donné pendant ce Hands-on.
 
-Aucun Sith n'a été trainé dans le côté obscure.
+Aucun Sith n'a été trainé dans le côté claire de la force.
 
 ### Données
 
