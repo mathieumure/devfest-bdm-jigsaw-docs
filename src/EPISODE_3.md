@@ -1,18 +1,26 @@
-# Chapter 3 - Bringing justice and jigsaw into the world
+# Episode III - La revanche des Sith Maven
 
-Muni de vos pouvoirs de modularisation, vous allez à présent vous lancer dans le monde réel.
+![Darth Maven](./images/Darth_Maven.jpg)
 
-## Description de votre mission
+Le côté obscure est très tendant et vous vous laissez séduire par les pouvoirs de modularisation de Maven, vous prenez alors le nom de **Darth Jigsaw**.
 
-Votre mission est de modulariser une application, listant les super-héros de votre ville, fonctionnant sous Java 8 pour la rendre compatible avec les futures versions de Java.
+## Devenir un vrai seigneur sith
+
+Les sith allant toujours par deux, vous allez à la rencontre de votre maître **Darth Maven**.
+
+```
+cd hands-on-jigsaw-devfest/2-sith
+```
+
+Votre maître vous demande de modulariser une application, listant les héros de la galaxie, fonctionnant sous Java 11 pour la rendre compatible avec les modules de Java.
 
 L'application est composée des plusieurs modules:
 
-* `api-marvel`: Le module de base définissant l'interface de récupération des super-heros.
-* `marvel-local-impl`: L'implémentation in-memory de l'interface définie dans `api-marvel`.
-* `marvel-http-server`: Le server Vertx proposant une webapp et une API web utilisant `marvel-local-impl`.
-* `fuzzywuzzy`: [La librairie de Fuzzy Search](https://github.com/xdrop/fuzzywuzzy) utilisée par `marvel-local-impl`.
-* `diff-utils`: Le module nécessaire à `fuzzywuzzy` et regroupant différentes méthodes utiles au calcul de la distance de levenshtein.
+* `api-starwars`: Le module de base définissant l'interface de récupération des héros.
+* `api-starwars-local-impl`: L'implémentation in-memory de l'interface définie dans `api-starwars`.
+* `starwars-vertx-http-server`: Le server Vertx proposant une webapp et une API web utilisant `api-starwars-local-impl`.
+* `fuzzywuzzy`: [La librairie de Fuzzy Search](https://github.com/xdrop/fuzzywuzzy) utilisée par `api-starwars-local-impl`.
+* `diffutils`: Le module nécessaire à `fuzzywuzzy` et regroupant différentes méthodes utiles au calcul de la distance de levenshtein.
 
 Les intéractions entre ces modules peuvent se représenter ainsi:
 
@@ -23,21 +31,21 @@ Les intéractions entre ces modules peuvent se représenter ainsi:
 L'ensemble du projet est géré avec [Gradle](https://gradle.org/).
 La gestion des modules au moment de la compilation et d'exécution est géré par le plugin Gradle [chainsaw](https://github.com/zyxist/chainsaw).
 
-> La version finale de l'application est déployée et disponible [ici](http://marvel.cleverapps.io).
+> La version finale de l'application est déployée et disponible [ici](http://starwars.cleverapps.io).
 
 > Si vous le désirez vous pouvez aussi utiliser l'image docker correspondante.
 
 ```
-docker pull louiznk/marvel:10-debian
+docker pull louiznk/starwars:11-debian
 ```
 
-## Lancement de l'application avec Java 8
+## $$TODO$$ - Lancement de l'application avec Java 8
 
 Rendez-vous sur le projet récupéré au chapitre 1 et déplacez-vous sur la branche `j8-vertx`.
 
 ```
 git add .
-git commit -m "feat: CHAPTER 2"
+git commit -m "feat: EPISODE 2"
 git checkout j8-vertx
 ```
 
@@ -187,4 +195,4 @@ Ce module doit:
 
 Lancez votre application qui doit maintenant fonctionner en utilisant les modules.
 
-> Bravo vous avez réussi à modulariser votre première application en utilisant les modules Java! Si vous êtes toujours vivant, continuez [au chapitre suivant](./CHAPTER_4.md).
+> Bravo vous avez réussi à modulariser votre première application en utilisant les modules Java! Si vous êtes toujours vivant, continuez [au chapitre suivant](./EPISODE_4.md).

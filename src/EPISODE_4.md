@@ -1,6 +1,14 @@
-# Chapter 4 - You are more than just a suit
+# Episode IV - Gradle, un Nouvel Espoir
 
-Ouch...suite à votre combat du chapitre 3, votre super combinaison `chainsaw` vient de tomber. Vous devez maintenant configurer Gradle sans lui.
+![Master Gradle](./images/master_gradle.jpg)
+
+Vous vous rendez compte de la surpercherie de votre maître et suite à un combat épique contre lui, vous êtes sauvé par **Master Gradle**, le Jedi légendaire. Vous le suivez et devenez sont Padawan pour sortir du côté obscure de la Force.
+
+```
+cd hands-on-jigsaw-devfest/66-jedi
+```
+
+## $$TODO$$
 
 Supprimez le plugin chainsaw de l'ensemble des fichiers `build.gradle` et les hack junit associés.
 
@@ -57,4 +65,4 @@ startScripts {
 
 Buildez et lancez votre serveur, qui doit fonctionner comme avant!
 
-> Bravo vous avez réussi à configurer Gradle sans chainsaw et vous maitrisez maintenant pleinement vos pouvoirs! Si la force est avec vous, rendez-vous sur [l'exercice suivant](./CHAPTER_5.md).
+> Bravo vous avez réussi à configurer Gradle sans chainsaw et vous maitrisez maintenant pleinement vos pouvoirs! Si la force est avec vous, rendez-vous sur [l'exercice suivant](./EPISODE_5.md).

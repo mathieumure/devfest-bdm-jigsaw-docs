@@ -1,5 +1,5 @@
 module.exports = {
-	title: 'Hand\'s on Jigsaw - Devfest',
+	title: 'Star Jigsaw - La guerre des modules',
 	description: 'Hand\'s on Jigsaw @ Devfest',
 	dest: 'docs',
 	base: '/devfest-nantes-jigsaw-docs/',
@@ -11,11 +11,11 @@ module.exports = {
 		],
 		sidebar: [
 			'/',
-			'/CHAPTER_1',
-			'/CHAPTER_2',
-			'/CHAPTER_3',
-			'/CHAPTER_4',
-			'/CHAPTER_5',
+			'/EPISODE_1',
+			'/EPISODE_2',
+			'/EPISODE_3',
+			'/EPISODE_4',
+			'/EPISODE_5',
 			'/TIPS',
 		],
 		

@@ -1,8 +1,10 @@
-# Chapter 5 - Nothing must hold you back, remove all unecessary things!
+# Episode V - Yoda contre-attaque
 
-Vous devez vous libérer de ce qui vous ralenti dans votre quête. Et réduire aux maximum vos dépendances.
+![Yoda](./images/yoda.jpeg)
 
-## Une version sans vertx
+Vous êtes maintenant un maître Jedi et maîtriser complètement de Jigsaw. Vous n'avez plus besoin de maître et allez maintenant partir seul.
+
+## $$TODO$$ - Une version sans vertx
 
 Votre co-équipier vous a préparé une version allégée sans vertx.
 Pour cela rendez-vous sur la branche GIT `j9-http-server`.
