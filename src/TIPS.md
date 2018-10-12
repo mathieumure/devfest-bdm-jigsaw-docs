@@ -115,9 +115,9 @@ Le JDK étant lui même modulaire, pour connaitre la liste des modules et leurs 
 * De nouvelles options et programmes dans la CLI du JDK
 
 ```
-java -p api-marvel/build/libs/api-marvel.jar --describe-module org.znk.handson.jigsaw.api
-jar --file=api-marvel/build/libs/api-marvel.jar --describe-module
-jdeps --module-path ./api-marvel/build/libs/api-marvel.jar -recursive ./marvel-local-impl/build/libs/marvel-local-impl.jar
+java -p api-starwars/build/libs/api-starwars.jar --describe-module org.znk.handson.jigsaw.api
+jar --file=api-starwars/build/libs/api-starwars.jar --describe-module
+jdeps --module-path ./api-starwars/build/libs/api-starwars.jar -recursive ./api-starwars-local-impl/build/libs/api-starwars-local-impl.jar
 ...
 ```
 
@@ -183,14 +183,14 @@ java ...  --module-path PATH
 
 ## Gradle
 
-Un wrapper de Gradle est directement disponible dans le projet en version 4.6. Pour le lancer depuis la racine du projet
+Un wrapper de Gradle est directement disponible dans le projet en version 4.10.2. Pour le lancer depuis la racine du projet
 
 ```
 ./gradlew
 
 > Task :help
 
-Welcome to Gradle 4.6.
+Welcome to Gradle 4.10.2
 
 To run a build, run gradlew <task> ...
 
@@ -367,18 +367,18 @@ La prise en charge des modules ne se limite pas à gérer la phase de compilatio
 
 IDEA gère cela pour les applications, pour les tests l'IDE utilise encore le classpath (ce qui évite d'avoir à gérer les patchs, add-export et autres joies des tests unitaires avec les modules).
 
-IDJ ne prend pas en compte tous les cas complexes que l'on peut rencontrer avec les ressources et les modules :
+IDEA ne prend pas en compte tous les cas complexes que l'on peut rencontrer avec les ressources et les modules :
 
 * Dans un livrable packagé (ex: un jar), les ressources sont dans la même arborescence que les classes, les classes peuvent donc accéder aux ressources sans faire face aux restrictions d'accès des modules
 * En phase de développement les ressources et les classes compilées sont dans des arborescences différentes, à l'exécution ces arborescences sont passées en arguments de `java`. Les classes étant positionnées ailleurs elles n'ont pas accès aux ressources.
 
 ```
-java ... .../marvel-http-server/out/production/classes:.../marvel-http-server/out/production/resources:.../devoxx-exo/marvel-local-impl/out/production/classes:.../marvel-local-impl/out/production/resources:... -m org.zenika.handson.jigsaw.http/org.zenika.handson.jigsaw.http.Application
+java ... .../startwars-vertex-http-server/out/production/classes:.../startwars-vertex-http-server/out/production/resources:.../devoxx-exo/api-starwars-local-impl/out/production/classes:.../api-starwars-local-impl/out/production/resources:... -m org.zenika.handson.jigsaw.http/org.zenika.handson.jigsaw.http.Application
 ```
 
 Dans notre application les ressources sont incluses dans le code et donc accédées via le classloader ce qui ne marche pas dans le cas présent. Il est cependant possible de contourner cela, en choisissant pour les modules qui ont ce besoin (`org.zenika.handson.jigsaw.api.local.impl` et `org.zenika.handson.jigsaw.http`), d'utiliser dans IDJ une arborescente en developpement spécifique au runtime (File/Project Structure/Project Settings/Module...**Use module compile output path** voir copie d'écran)
 
-![](./idea_module_tips.png)
+![](./images/idea_module_tips.png)
 
 ## Génération de modules "linkés" et JRE optimisé
 
@@ -392,24 +392,24 @@ Ces fonctions avancées permettent d’avoir une application packagée avec une 
 
 # generation de la JVM packagée avec nos modules et ses dépendances
 jlink \
---module-path $JAVA_HOME/jmods:`pwd`/api-marvel/build/libs/api-marvel.jar:...liste_des_binaires_modules_ou_repertoire....   \
+--module-path $JAVA_HOME/jmods:`pwd`/api-starwars/build/libs/api-starwars.jar:...liste_des_binaires_modules_ou_repertoire....   \
 --add-modules org.zenika.handson.jigsaw.api.local.impl,...liste_des_noms_des_modules...\
---output `pwd`/marveljre --launcher marvelous=org.zenika.handson.jigsaw.http/org.zenika.handson.jigsaw.http.Application \
+--output `pwd`/starwarsjre --launcher death-star-launcher=org.zenika.handson.jigsaw.http/org.zenika.handson.jigsaw.http.Application \
 --compress=2
 
 # affichage des modules de notre JRE optimisé
-./marveljre/bin/java --list-modules
+./starwarsjre/bin/java --list-modules
 ```
 
 La liste des modules de notre JRE "light" est
 
-* java.base@9.0.4
-* java.logging@9.0.4
-* jdk.httpserver@9.0.4
+* java.base@11
+* java.logging@11
+* jdk.httpserver@11
 * me.xdrop.diffutils
 * me.xdrop.fuzzywuzzy
 * org.zenika.handson.jigsaw.api
 * org.zenika.handson.jigsaw.api.local.impl
 * org.zenika.handson.jigsaw.http open
 
-La version @9.0.4 est celle de la JVM "source". Si l'on voulait avoir un numéro de version il faut générer le jar avec l'option _--module-version_ (mais cette information n'est malheureusement pas exploitée pour gérer les versions des modules)
+La version @11 est celle de la JVM "source". Si l'on voulait avoir un numéro de version il faut générer le jar avec l'option _--module-version_ (mais cette information n'est malheureusement pas exploitée pour gérer les versions des modules)

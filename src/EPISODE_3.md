@@ -12,11 +12,11 @@ Les sith allant toujours par deux, vous allez à la rencontre de votre maître *
 cd hands-on-jigsaw-devfest/2-sith
 ```
 
-Votre maître vous demande de modulariser une application, listant les héros de la galaxie, fonctionnant sous Java 11 pour la rendre compatible avec les modules de Java.
+Votre maître vous demande de modulariser une application, listant les héros de la galaxie, fonctionnant sous **Java 11** pour la rendre compatible avec les modules de Java.
 
-L'application est composée des plusieurs modules:
+L'application est composée des plusieurs modules maven:
 
-* `api-starwars`: Le module de base définissant l'interface de récupération des héros.
+* `api-starwars`: Le module de base définissant l'interface de définition et requétage des personnages.
 * `api-starwars-local-impl`: L'implémentation in-memory de l'interface définie dans `api-starwars`.
 * `starwars-vertx-http-server`: Le server Vertx proposant une webapp et une API web utilisant `api-starwars-local-impl`.
 * `fuzzywuzzy`: [La librairie de Fuzzy Search](https://github.com/xdrop/fuzzywuzzy) utilisée par `api-starwars-local-impl`.
@@ -24,130 +24,149 @@ L'application est composée des plusieurs modules:
 
 Les intéractions entre ces modules peuvent se représenter ainsi:
 
-![](./dependency-graph.png)
+![Dependency Grapg](./images/dependency-graph.png)
+_représentation des dépendances_
 
-**Gestion des dépendances**
+### Gestion des dépendances
 
-L'ensemble du projet est géré avec [Gradle](https://gradle.org/).
-La gestion des modules au moment de la compilation et d'exécution est géré par le plugin Gradle [chainsaw](https://github.com/zyxist/chainsaw).
+En tant que Sith, l'ensemble du projet est géré avec [Maven](https://maven.apache.org/).
+Vous n'avez pas besoin d'installer maven, vous pouvez directement utilser le script `mvnw` (ou `mvnw.bat`) à la racine du projet.
 
-> La version finale de l'application est déployée et disponible [ici](http://starwars.cleverapps.io).
+La gestion des modules au moment de la compilation et d'exécution est géré automatiquement par maven (détecte la présence du fichier `module-info`)
 
+> La version finale de l'application est déployée et disponible [ici](https://devfest-nantes-jigsaw.cleverapps.io).
 > Si vous le désirez vous pouvez aussi utiliser l'image docker correspondante.
 
-```
-docker pull louiznk/starwars:11-distroless
-```
-
-## $$TODO$$ - Lancement de l'application avec Java 8
-
-Rendez-vous sur le projet récupéré au chapitre 1 et déplacez-vous sur la branche `j8-vertx`.
-
-```
-git add .
-git commit -m "feat: EPISODE 2"
-git checkout j8-vertx
+```sh
+docker run -ti -p8090:8080 louiznk/sw-devfest:11-distroless
 ```
 
-Importez le projet dans votre IDE et lancer l'application avec Java 8 puis Java 9 (vous pouvez utiliser votre JAVA_HOME ou sdk use java `version` et pour connaitre les version que vous avez via sdkman `sdk list java`).
+L'application démarrer dans docker est accessible [ici](http://localhost:8090)
 
-```
-sdk use java <JAVA_8_VERSION>
-./gradlew build
-./gradlew run
+## Lancement de l'application avec Java 11
+
+Vous avez le projet maven dans votre IDE configuré avec Java 11 (vous pouvez utiliser votre JAVA_HOME ou sdk use java `version` et pour connaitre les version que vous avez via sdkman `sdk list java`).
+
+Vérifier que votre projet s'installe correctement.
+
+```sh
+./mvnw clean install
 ```
 
-```
-sdk use java <JAVA_9_VERSION>
-./gradlew build
-./gradlew run
+Lancer ensuite le serveur :
+
+```sh
+cd starwars-vertx-http-server
+./mvnw exec:java
 ```
 
 Constatez que l'application fonctionne en ouvrant votre navigateur sur l'URL [http://localhost:8080](http://localhost:8080) et notamment la page [infos](http://localhost:8080/infos).
 
-> Dans cette page regardez les informations sur les modules (ou non).
+> Dans la page info, regardez les informations sur les modules (ou non).
 
-## Récupération de l'application avec du code Java 9
+## Modularisation de l'application: maitriser le sabre
 
-Un de vos fidèles co-équipier a mis à jour le code pour qu'il utilise les dernières fonctionnalités proposées par Java 9.
-Rendez-vous sur la branche `j9-vertx-classpath` et lancez l'application en utilisant Java 9 avec le classpath.
+Vous allez maintenant développer votre habileté en modularisant votre application.
+Commencez par modulariser les modules `api-starwars`, `diff-utils` et `fuzzywuzzy`.
 
-```
-git checkout j9-vertx-classpath
-./gradlew build
-./gradlew run
-```
+Ajouter pour ces modules le fichier `module-info.java` dans les répertoires `src/main/java`.
 
-Comme précédemment vous ne devriez pas avoir de module name sur la page [infos](http://localhost:8080/infos)
-
-L'application doit fonctionner en mode classpath avec Java 9 (mais pas Java 8).
-
-```
-sdk use java <JAVA_9_VERSION>
-./gradlew check run
-```
-
-Retournez sur la page [infos](http://localhost:8080/infos) et vous verrez les modules du JDK qui sont "chargés" (et toujours pas de module name).
-
-## Modularisation de l'application: s'occuper du menu fretin.
-
-Vous allez maintenant utiliser votre pouvoir pour modulariser votre application.
-Commencez par modulariser les modules `api-marvel`, `diff-utils` et `fuzzywuzzy`.
-
-Ajouter pour chaque module dans le fichier `build.gradle` le plugin chainsaw.
-
-```
-plugins {
-    ...
-    id 'com.zyxist.chainsaw' version '0.3.1'
-}
-```
+Pour rappel les dépendances sont présentées dans le schéma _représentation des dépendances_
 
 N'hésitez à vous appuyer sur vos [TIPS](./TIPS.md) en cas de problème(s)!
 
-Vérfiez que tout compile encore en lançant un build.
+Vérfiez que tout compile encore en lançant les tests depuis la racine du projet.
 
-```
-./gradlew clean build
-```
-
-## Modularisation de l'application: le bras droit
-
-Modularisez à présent le module `marvel-local-impl`, attention cependant, celui-ci possède également des tests que vous vous sentez obligé de rendre passant. Pour qu'ils puissent s'exécuter en utilisant les modules faite la modification suivante dans le fichier `build.gradle` à la racine du projet.
-
-```diff
-[...]
-    test {
-        useJUnitPlatform()
--        environment "MARVEL", "CLASSPATH"
--        environment "HTTP", "CLASSPATH"
-+        environment "MARVEL", "JIGSAW" // Enable some Jigsaw Specific Test for the marvel-local-impl module
-+        environment "HTTP", "JIGSAW" // Enable some Jigsaw Specific Test for the marvel-http-server module
+```sh
+./mvnw clean test
 ```
 
-> Attention! IntelliJ n'exécute pas les tests en utilisant les modules.
+Les tests unitaires doivent aussi passer depuis votre IDE.
 
-Les tests ne devraient pas passer. Cela est dû à plusieurs problèmes:
+## Modularisation du reste de l'application: maitriser le double sabre
 
-* JUnit n'a pas accès à votre module par réflexivité.
-* `InMemoryCharactersApi.java` charge les fichiers en utilisant `getClassLoader` qu'il faut remplacer par `getModule`.
-* Les ressources ne sont pas accessibles par vos tests, il faut donc modifier gradle pour copier ces ressources dans le dossier de classes java.
+Modularisez à présent le module `api-starwars-local-impl`, attention cependant en tant que sith le plugin surefire ne sait pas utiliser jigsaw. Vos tests seront donc lancé avec le classpath classique.
 
+> Attention! IntelliJ n'exécute pas les tests en utilisant les modules (tout comme maven-surefire).
+
+## Modularisation de l'application: maitriser la télékinesie
+
+Modularisez à présent le serveur HTTP `starwars-vertx-http-server` qui, comme précédemment, contient des tests qui doivent fonctionner pour achever votre mission.
+
+Ce module doit:
+
+* permettre d'exposer les ressources statiques (fichier js, html, css, ...) de l'application web.
+* utiliser l'implémentation de `org.zenika.handson.jigsaw.api.CharactersApi` (qui est fournit par le module `api-startwars-local-impl`).
+
+Lancez le serveur web qui doit maintenant fonctionner en utilisant les modules.
+
+Vous croyez avoir réussit ? Non, le côté obscure choisit la facilité mais votre maitre vous remez en place jeune apprenti : 
+Vous avez certe créer des modules mais vous ne les avez pas executé en tant que module, vous êtes rester dans la voix du classpath. Pour aller plus loin vous devez executer votre application en tant que module jigsaw.
+
+```log
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by io.netty.util.internal.ReflectionUtil ...
+WARNING: Please consider reporting this to the maintainers of io.netty.util.internal.ReflectionUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
 ```
-test {
-    ...
-    doFirst {
-        // can't access to file in resources directory => copy to java classes directory
-        copy {
-            from "$projectDir/src/main/resources"
-            into "$buildDir/classes/java/main/"
-        }
-    }
-}
+
+
+![Module Name Null](./images/module_name_null.png)
+_application lancé sans utiliser Jigsaw_
+
+## Modularisation de l'application: maitriser la foudre
+
+Faite en sorte que votre application démarre avec Jigsaw, pour cela modifier le fichier `./starwars-vertx-http-server/pom.xml`
+
+Remplacez la configuration du plugin `exec-maven-plugin` ainsi. Remplacez `$$YOUR_MODULE_NAME$$` par le nom de votre module et `$$PATH_TO_YOUR_JAVA$$` par le chemin de votre executable java 11.
+
+```xml
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <executable>$$PATH_TO_YOUR_JAVA_EXE$$</executable>
+                    <arguments>
+                        <argument>--module-path</argument>
+                        <modulepath/>
+                        <argument>--module</argument>
+                        <argument>$$YOUR_MODULE_NAME$$/org.zenika.handson.jigsaw.http.Application</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
 ```
 
-Plus qu'un seul test devrait échouer, cele est dû au fait que les ressources dans `img` ne sont pas ouvertes (open) et que ces resources sont "protégées".
-Effectuer les modifications nécessaires pour rendre tous les tests passant.
+Puis à la racine du projet
+
+```sh
+./mvnw install
+cd starwars-vertx-http-server
+./mvnw exec:exec
+```
+
+Vous devriez avoir l'erreur suivante :
+
+```error
+Exception in thread "main" java.util.ServiceConfigurationError: org.zenika.handson.jigsaw.api.CharactersApi: module starwars.http.server does not declare `uses`
+	at java.base/java.util.ServiceLoader.fail(ServiceLoader.java:588)
+	at java.base/java.util.ServiceLoader.checkCaller(ServiceLoader.java:574)
+	at java.base/java.util.ServiceLoader.<init>(ServiceLoader.java:503)
+	at java.base/java.util.ServiceLoader.load(ServiceLoader.java:1691)
+	at starwars.http.server/org.zenika.handson.jigsaw.http.Application.<clinit>(Application.java:47)
+```
+
+Il va falloir maintenant montrer la vraie maitrise de la force. Pour cela
+
+* indiquez que vous **utilisez** une implémentation de l'API (`api-starwars`)
+* qui est **fourni** par l'implementation (`api-starwars-local-impl`)
+* vous devez aussi **ouvrir** les ressources images fournies par  (`api-starwars-local-impl`) pour quelles soient accessible aux autres modules
+* et enfin rendre disponible (ouvrir) **toutes** les ressources web exposées par Vert.x (dans `starwars-vertx-http-server`)
+
+N'oubliez que les [archives de votre droïde](./TIPS.md) sont d'une aide précieuses.
+
+Pourquoi doit-on ouvrir les ressources que l'on partager ? car par défaut ces resources sont "protégées".
 
 > Il y a notamment quelques précisions dans la javadoc suivante.
 
@@ -162,37 +181,9 @@ A resource in a named module may be encapsulated so that it cannot be located by
 ...
 ```
 
-Modifier le fichier `build.gradle` à la racine de votre projet et faites la modifications suivante.
+**Bravo vous avez réussi à modulariser votre première application en utilisant les modules Java!**
 
-```diff
-subprojects {
-  afterEvaluate {
-    [...]
-    test {
--       environment "MARVEL", "CLASSPATH"
-+       environment "MARVEL", "JIGSAW"
-    }
-```
+Malheureusement, vous réaliser que votre maître **Darth Maven** ne vous a caché des choses! A cause de Surefire, vos tests sont toujours pas exécutés en mode classpath !!!
+La maîtrise de Jigsaw par maven ne sera jamais complète!
 
-_Attention_ Chainsaw n'ouvre pas votre module au module `org.junit.platform.commons`. Afin que vos tests puissent fonctionner, il est nécessaire d'ajouter la configuration suivante dans le fichier `build.gradle` du module `marvel-local-impl`.
-
-```
-javaModule.hacks {
-    exports('org.zenika.handson.jigsaw.api.local.impl', 'org.zenika.handson.jigsaw.api.local.impl', 'org.junit.platform.commons')
-}
-```
-
-> Toujours pas K.O ? Il est temps de s'attaquer maintenant au BOSS, l'application Web.
-
-## Modularisation de l'application: le BOSS
-
-Modularisez à présent le serveur HTTP `marvel-http-server` qui, comme précédemment, contient des tests qui doivent fonctionner pour achever votre mission.
-
-Ce module doit:
-
-* permettre d'exposer les ressources statiques (fichier js, html, css, ...) de l'application web.
-* utiliser l'implémentation de `org.zenika.handson.jigsaw.api.CharactersApi` (qui est fournit par le module `marvel-local-impl`).
-
-Lancez votre application qui doit maintenant fonctionner en utilisant les modules.
-
-> Bravo vous avez réussi à modulariser votre première application en utilisant les modules Java! Si vous êtes toujours vivant, continuez [au chapitre suivant](./EPISODE_4.md).
+> Pour en savoir plus, rendez vous [à l'épisode suivant](./EPISODE_4.md).
