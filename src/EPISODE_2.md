@@ -6,7 +6,7 @@ Pendant votre trajet en Hyper-espace, vous décidez de pratiquer votre manipulat
 
 ## Révision des bases
 
-Pour commencer en douceur, vous allez faire un bon vieux Hello Devfest...mais en lançant les étapes de compilation et d'exécution à la main pour mieux comprendre l'utilisation de Jigsaw.
+Pour commencer votre initiation, vous allez faire un bon vieux Hello Devfest...mais en lançant les étapes de compilation et d'exécution à la main pour mieux comprendre l'utilisation de Jigsaw.
 
 Pour cela, créez une nouvelle classe `Application.java` dans le package `org.devfest.handson.jigsaw` qui contiendra votre `main`.
 
@@ -71,8 +71,17 @@ Relancez la compilation qui devrait encore une fois échouer.
 package java.util.logging is declared in module java.logging, but module org.devfest.handson.jigsaw does not read it
 ```
 
-Cette fois-ci, vous avez oublié de définir la dépendance vers `java.util.logging` dans votre définition du module.
-Ajoutez-la dans votre `module-info.java` et enfin relancez votre compilation qui doit maintenant avoir créé un joli `module-info.class` dans le dossier target.
+Cette fois-ci, pour pouvoir utiliser les classes du package `java.util.logging`, il faut ajouter une dépendance au module `java.logging` dans votre définition du module.
+
+Ajoutez-la dans votre `module-info.java` avec le mot clé `requires` et enfin relancez votre compilation qui doit maintenant avoir créé un joli `module-info.class` dans le dossier target.
+
+
+Exemple :
+```java
+module org.devfest.handson.jigsaw {
+    requires jai.laforce;
+}
+```
 
 **Bravo à vous! compilé votre premier module Java vous avez.**
 
@@ -84,4 +93,4 @@ java --module-path target --module org.devfest.handson.jigsaw/org.devfest.handso
 
 **Bravo à vous! votre premier module Java exécuté vous avez.**
 
-> Vous êtes maintenant prêt à affonter le monde réel. Rendez-vous dans le [prochain chapitre](./EPISODE_3.md) pour continuer votre aventure...
+> Vous commencer à ressentir le pouvoir des midi-chloriens présent dans toutes choses de l'univers... Rendez-vous dans le [prochain épisode](./EPISODE_3.md) pour continuer votre initiation...

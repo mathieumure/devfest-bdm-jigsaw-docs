@@ -67,7 +67,7 @@ provides une.interface
               with une.implementation
 ```
 
-* Pouvoir utiliser (grace au ServiceLoader) les implémentations d'une interface qui ont été définies via _provides * with *_ : **uses**
+* Pouvoir utiliser (grâce au ServiceLoader) les implémentations d'une interface qui ont été définies via _provides * with *_ : **uses**
 
 ```java
 uses une.interface

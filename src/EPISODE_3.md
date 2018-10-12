@@ -2,9 +2,9 @@
 
 ![Darth Maven](./images/Darth_Maven.jpg)
 
-Le côté obscure est très tendant et vous vous laissez séduire par les pouvoirs de modularisation de Maven, vous prenez alors le nom de **Darth Jigsaw**.
+Le côté obscure est très tentant et vous vous laissez séduire par les pouvoirs de modularisation de Maven, vous prenez alors le nom de **Darth Jigsaw**.
 
-## Devenir un vrai seigneur sith
+## Devenir un seigneur sith
 
 Les sith allant toujours par deux, vous allez à la rencontre de votre maître **Darth Maven**.
 
@@ -36,7 +36,7 @@ La gestion des modules au moment de la compilation et d'exécution est géré pa
 > Si vous le désirez vous pouvez aussi utiliser l'image docker correspondante.
 
 ```
-docker pull louiznk/starwars:11-debian
+docker pull louiznk/starwars:11-distroless
 ```
 
 ## $$TODO$$ - Lancement de l'application avec Java 8
