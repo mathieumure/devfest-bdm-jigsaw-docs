@@ -8,7 +8,7 @@ Pendant votre trajet en Hyper-espace, vous décidez de pratiquer votre manipulat
 
 Pour commencer votre initiation, vous allez faire un bon vieux Hello Devfest...mais en lançant les étapes de compilation et d'exécution à la main pour mieux comprendre l'utilisation de Jigsaw.
 
-Pour cela, créez une nouvelle classe `Application.java` dans le package `org.devfest.handson.jigsaw` qui contiendra votre `main`.
+Pour cela, créer une nouvelle classe `Application.java` dans le package `org.devfest.handson.jigsaw` qui contiendra votre `main`.
 
 ```java
 package org.devfest.handson.jigsaw;
@@ -26,15 +26,15 @@ public class Application {
 
 Vous allez maintenant lancer la compilation _"à l'ancienne"_ de cette classe.
 
-Dans votre terminal, exécuter la commander suivante.
+Dans votre terminal, exécuter la commande suivante.
 
-```
+```sh
 javac -d target src/org/devfest/handson/jigsaw/Application.java
 ```
 
-Puis lancer l'exécution du bytecode généré.
+Puis démarrer la classe générée.
 
-```
+```sh
 java -classpath target/ org.devfest.handson.jigsaw.Application
 ```
 
@@ -42,9 +42,9 @@ Vous devriez voir s'afficher votre bon vieux `Hello Devfest`!
 
 ## Transformation en Jigsaw
 
-Relancez maintenant une compilation, mais cette fois-ci en utilisant les modules.
+Relancer maintenant une compilation, mais cette fois-ci en utilisant les modules.
 
-```
+```sh
 javac -d target \
   --module-path src \
   src/module-info.java src/org/devfest/handson/jigsaw/Application.java
@@ -52,28 +52,28 @@ javac -d target \
 
 Vous devriez obtenir l'erreur suivante.
 
-```
+```error
 file not found: src/module-info.java
 ```
 
 Normal car vous n'avez pas encore défini votre module !
 
-Ajoutez un fichier `module-info.java` dans `src` afin de définir votre module que vous nommerez `org.devfest.handson.jigsaw`.
+Ajouter un fichier `module-info.java` dans `src` afin de définir votre module que vous nommerez `org.devfest.handson.jigsaw`.
 
 ```java
 module org.devfest.handson.jigsaw {
 }
 ```
 
-Relancez la compilation qui devrait encore une fois échouer.
+Relancer la compilation qui devrait encore une fois échouer.
 
-```
+```error
 package java.util.logging is declared in module java.logging, but module org.devfest.handson.jigsaw does not read it
 ```
 
 Cette fois-ci, pour pouvoir utiliser les classes du package `java.util.logging`, il faut ajouter une dépendance au module `java.logging` dans votre définition du module.
 
-Ajoutez-la dans votre `module-info.java` avec le mot clé `requires` et enfin relancez votre compilation qui doit maintenant avoir créé un joli `module-info.class` dans le dossier target.
+Ajoutez-la dans votre `module-info.java` avec le mot clé `requires` et enfin relancez votre compilation qui doit maintenant avoir créé un joli `module-info.class` dans le dossier `target`.
 
 
 Exemple :
@@ -83,14 +83,14 @@ module org.devfest.handson.jigsaw {
 }
 ```
 
-**Bravo à vous! compilé votre premier module Java vous avez.**
+**Bravo à vous! Compilé votre premier module Java, vous avez.**
 
-Lancez à présent votre application en utilisant le chargement par module.
+Lancer à présent votre application en utilisant le chargement par module.
 
-```
+```sh
 java --module-path target --module org.devfest.handson.jigsaw/org.devfest.handson.jigsaw.Application
 ```
 
-**Bravo à vous! votre premier module Java exécuté vous avez.**
+**Bravo à vous! Votre premier module Java, exécuté, vous avez.**
 
-> Vous commencer à ressentir le pouvoir des midi-chloriens présent dans toutes choses de l'univers... Rendez-vous dans le [prochain épisode](./EPISODE_3.md) pour continuer votre initiation...
+> Vous commencez à ressentir le pouvoir des midi-chloriens présent dans toutes choses de l'univers... Rendez-vous dans le [prochain épisode](./EPISODE_3.md) pour continuer votre initiation...

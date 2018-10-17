@@ -1,4 +1,4 @@
-# TIPS
+# C3P0_H3LP
 
 Une question, un doute sur votre pouvoir de modularisation? Vous trouverez tout ce qu'il vous faut ici!
 
@@ -35,7 +35,7 @@ module nom.de.mon.module {
 }
 ```
 
-**TIPS**
+**C3P0_H3LP**
 Pour éviter les collisions dans les noms de modules, une pratique est de mettre des noms de modules identiques aux noms de package que l'on expose.
 
 Un module peut contenir des instructions pour :

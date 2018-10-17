@@ -6,7 +6,7 @@ module.exports = {
 	themeConfig: {
 		repo: 'louiznk/hands-on-jigsaw-devfest',
 		nav: [
-			{ text: 'Tips', link: '/TIPS' },
+			{ text: 'C3P0 Help', link: '/C3P0_HELP' },
 			{ text: 'Frontend', link: 'https://github.com/mathieumure/devfest-nantes-jigsaw-webapp' },
 		],
 		sidebar: [
@@ -16,7 +16,7 @@ module.exports = {
 			'/EPISODE_3',
 			'/EPISODE_4',
 			'/EPISODE_5',
-			'/TIPS',
+			'/C3P0_HELP',
 		],
 		
 	}
