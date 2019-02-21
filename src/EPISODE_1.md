@@ -19,7 +19,7 @@ Pour cela, vous récupérer les outils suivants:
 Une fois votre sabre fabriqué, vous paramétrez votre **console** avec vos prochaines coordonnées: la planète Github.
 
 ```sh
-git clone https://github.com/louiznk/hands-on-jigsaw-devfest.git
+git clone https://github.com/louiznk/hands-on-jigsaw-bdm.git
 ```
 
 > Vous décollez de Tatooine et passez en [hyper-espace](./EPISODE_2.md)
