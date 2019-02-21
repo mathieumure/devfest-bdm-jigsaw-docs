@@ -42,6 +42,6 @@ Tout le reste du code est en usage libre sans aucune restriction.
 
 ## Tools
 
-Le frontend est développé en Vue.JS dont vous pourrez trouver les sources [ici](https://github.com/mathieumure/devfest-nantes-jigsaw-webapp)
+Le frontend est développé en Vue.JS dont vous pourrez trouver les sources [ici](https://github.com/mathieumure/devfest-bdm-jigsaw-webapp)
 
 La librairie de fuzzy search JavaWuzzy utilisée est disponible [ici](https://github.com/xdrop/fuzzywuzzy)

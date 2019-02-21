@@ -2,12 +2,12 @@ module.exports = {
 	title: 'Star Jigsaw - La guerre des modules',
 	description: 'Hand\'s on Jigsaw @ Devfest',
 	dest: 'docs',
-	base: '/devfest-nantes-jigsaw-docs/',
+	base: '/devfest-bdm-jigsaw-docs/',
 	themeConfig: {
-		repo: 'louiznk/hands-on-jigsaw-devfest',
+		repo: 'louiznk/hands-on-jigsaw-bdm',
 		nav: [
 			{ text: 'C3P0 Help', link: '/C3P0_HELP' },
-			{ text: 'Frontend', link: 'https://github.com/mathieumure/devfest-nantes-jigsaw-webapp' },
+			{ text: 'Frontend', link: 'https://github.com/mathieumure/devfest-bdm-jigsaw-webapp' },
 		],
 		sidebar: [
 			'/',

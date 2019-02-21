@@ -1,7 +1,7 @@
 {
-  "name": "devfest-nantes-jigsaw-docs",
+  "name": "devfest-bdm-jigsaw-docs",
   "version": "0.0.1",
-  "description": "Pratical Work docs for hands on jigsaw @ devefest nantes",
+  "description": "Pratical Work docs for hands on jigsaw @ devefest bdm",
   "scripts": {
     "serve": "vuepress dev src",
     "build": "vuepress build src"
