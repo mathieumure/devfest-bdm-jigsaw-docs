@@ -39,7 +39,7 @@ L'intégration de Jigsaw au moment de la compilation est géré automatiquement 
 > Si vous le désirez vous pouvez aussi utiliser l'image docker correspondante.
 
 ```sh
-docker run -ti -p8090:8080 louiznk/sw-devfest:11-distroless
+docker run -ti -p8090:8080 louiznk/sw-bdm:11-distroless
 ```
 
 L'application démarrée dans `docker` est accessible [ici](http://localhost:8090)

@@ -1,16 +1,20 @@
 # A long time ago in a galaxy far far away...
 
-Fraichement arrivé à l'agence de [Zenika Mars](https://mars.zenika.com), vous remarquez une proposition de code lab un peu oublié de tous se situant à l'extérieur de la ceinture d'astéroïde. Votre sens de l'aventure et du challenge vous pousse à accepter ce défi et vous montez à bord de votre X-Wing. Après plusieurs heures de vol, vous dépassez la ceinture...là où aucun homme ne s'est jamais aventuré.
+Vous venez d'amarrer votre navire baptisé [Zenika](https://www.zenika.com) dans le port de [Brest](https://blog.zenika.com/2019/01/08/zenika-arrive-a-brest/). Cela fait maintenant plusieurs années que vous naviguez à travers l'Europe et cet arrêt au bout du monde vous permettra d'aller fêter avec votre équipage le fin de votre expédition.
 
-![XWing](./images/xwing.png)
+![Brest](./images/banner_bdm.jpg)
 
-Soudain vos capteurs s'affolent et votre vaisseau se retrouve aspiré dans un trou noir. Ce n'est qu'après plusieurs minutes d'intenses secousses, que vous sortez de cet enfer sombre et réussissez à vous poser à proximité d'un temple sur une planète inconnue. 
+Après quelques heures à festoyer à l'intérieur d'une taverne non loin du château de Brest, une personne encapuchonnée vous aborde et vous parle d'une ancienne prophétie à propos d'un nouveau monde plein de richesses et qui apporterait la gloire à celui qui le trouverais. Il n'en fallait pas plus à votre côté aventurier pour remettre les voiles et aller à la rencontre de votre succès!
+
+![storm](./images/storm.jpg)
+
+Après plusieurs jours à naviguer, vous vous retrouvez au milieu d'une tempête d'un violence inouïe. Malgré le talent de votre équipage, votre navire se retrouve aspiré inexorablement dans un vortex sans fond et sans lumière...Ce n'est qu'après plusieurs minutes d'intenses secousses, que vous sortez de cet enfer sombre et réussissez à vous échouer à proximité d'un temple sur une terre inconnue. 
 
 ![Oracle Temple](./images/jedi_temple.png)
 
 Vous décidez d'explorer ce temple. Après avoir déambuler à travers différents couloirs, vous tombez sur une fresque vous représentant vous et votre vaisseau sur cette planète. Sur ces murs sont dessinés des scènes de votre passé mais également des évènements que vous ne connaissez pas...en tout cas pas encore.
 
-Plus tard, à bord de votre X-Wing, vous méditez sur ces dernières heures plutôt troublantes. Vous aviez toujours su que quelque chose était différent en vous... que vous étiez différent. Mais vous ne vous doutiez pas que (l')**Oracle** qui se trouvait à l'intérieur du temple allait vous prédire cet avenir si incertain...
+Plus tard, vous rencontrez l'homme encapuchonné qui vous avait accosté au bar il y a plusieurs jours. Il vous révèle qu'il est un **Oracle** d'une autre planète et que ce vortex vous à fait voyager à travers les étoiles dans une autre galaxie. Il vous révèle également pourquoi il vous a fait venir aux confins de l'univers.
 
 Vous allez évoluer vers une nouvelle vie, une nouvelle version de vous-même. On vous a prédit que vous êtes une nouvelle perturbation de la Force et que vous serez...
 
